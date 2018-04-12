@@ -1,14 +1,7 @@
 #!/bin/bash
 #SBATCH --nodes 1
-#SBATCH --ntasks 8
-#SBATCH --cpus-per-task 1
-#SBATCH --time=02:00:00
-#SBATCH --mem=14000
-# # # SBATCH --account=mse-468
-# # # SBATCH --reservation=mse-468-04-10
-
-# run from directory where this script is
-cd `echo $0 | sed 's/\(.*\)\/.*/\1/'` # extract pathname
+#SBATCH --ntasks 4
+#SBATCH --time=01:00:00
 
 #These
 module purge
@@ -25,11 +18,10 @@ LISTK="4"             # List of number of k-points per dimension to try.
 
 
 # Files of interest:
-TMP_DIR="./tmp"         # where temporary data will be stored.
+TMP_DIR="/scratch/nsbarchi/tmp"         # where temporary data will be stored.
 PSEUDO_DIR="../pseudo"   # where pseudopotentials are stored.
-OUT_DIR="./results"     # where input and output will be
+OUT_DIR="/scratch/nsbarchi/results"     # where input and output will be
                         # created once the script runs.
-
 
 # check whether ECHO has the -e option
 if test "`echo -e`" = "-e" ; then ECHO=echo ; else ECHO="echo -e" ; fi
@@ -102,7 +94,7 @@ E=$(grep ! $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $5}')
 F=$(grep "Total force =" $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $4}')
 P=$(grep "P=" $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $6}')
 $ECHO "$E\t$F\t$P\t$ecut\t$k" >> data
-
+:
 # Finish loops on plane-wave cutoffs, k-point grids, and lattice constants:
 done
 done

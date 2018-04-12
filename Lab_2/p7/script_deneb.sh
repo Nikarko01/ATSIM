@@ -1,14 +1,7 @@
 #!/bin/bash
 #SBATCH --nodes 1
 #SBATCH --ntasks 8
-#SBATCH --cpus-per-task 1
 #SBATCH --time=00:30:00
-#SBATCH --mem=14000
-#SBATCH --account=mse-468
-# # # SBATCH --reservation=mse-468-04-10
-
-# run from directory where this script is
-cd `echo $0 | sed 's/\(.*\)\/.*/\1/'` # extract pathname
 
 #These
 module purge
@@ -90,8 +83,7 @@ cat > $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.in << EOF
          O   15.9994  O.pbe.UPF
       ATOMIC_POSITIONS {alat} 
          Mg 0.00 0.00 0.00
-         O  0.50 0.50 0.50
-         
+         O  0.50 0.50 0.50    
       K_POINTS {automatic}
          $k $k $k  0 0 0
 EOF
