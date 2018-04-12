@@ -5,8 +5,10 @@
 #SBATCH --time=00:30:00
 #SBATCH --mem=14000
 #SBATCH --account=mse-468
-## SBATCH --reservation=mse-468-04-10
+# # # SBATCH --reservation=mse-468-04-10
 
+# run from directory where this script is
+cd `echo $0 | sed 's/\(.*\)\/.*/\1/'` # extract pathname
 
 #These
 module purge
@@ -17,16 +19,16 @@ module load fftw/3.3.6-pl2
 module load espresso/6.1.0-mpi
 
 
-LISTA="7.97"            # List of values of lattice parameter to try
-LISTECUT="10  20  30  40  50  60  70  80  90 100 110 120 130 140 150 200"         # List of plane-wave cutoffs to try
-LISTK="2 4"             # List of number of k-points per dimension to try.
+LISTA="7.97"             	# List of values of lattice parameter to try
+LISTECUT="xxx"              # List of plane-wave cutoffs to try
+LISTK="1 2 3 4 5 6 7 8"  	# List of number of k-points per dimension to try.
 
 
 # Files of interest:
-TMP_DIR="./tmp"         # where temporary data will be stored.
-PSEUDO_DIR="./pseudo"   # where pseudopotentials are stored.
-OUT_DIR="./results"     # where input and output will be
-                        # created once the script runs.
+TMP_DIR="./tmp"         	# where temporary data will be stored.
+PSEUDO_DIR="../pseudo"  	# where pseudopotentials are stored.
+OUT_DIR="./results"     	# where input and output will be
+                        	# created once the script runs.
 
 
 # check whether ECHO has the -e option

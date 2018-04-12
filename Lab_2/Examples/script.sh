@@ -1,17 +1,20 @@
 #!/bin/bash
 
 # Input data:
-LISTA="7.969"            # List of values of lattice parameter to try
-LISTECUT="20 25"        # List of plane-wave cutoffs to try
-LISTK="2 4"             # List of number of k-points per dimension to try
+LISTA="7.969"           	# List of values of lattice parameter to try
+LISTECUT="10  20  30  40  50  60  70  80  90 100 110 120 130 140 150"        	# List of plane-wave cutoffs to try
+LISTK="2"             	# List of number of k-points per dimension to try
 
 # Files of interest:
-TMP_DIR="./tmp"        # where temporary data will be stored
-PSEUDO_DIR="./pseudo"  # where pseudopotentials are stored
-OUT_DIR="./Test_script"       # where input and output will be
+TMP_DIR="./tmp"        		# where temporary data will be stored
+PSEUDO_DIR="./pseudo"  		# where pseudopotentials are stored
+OUT_DIR="./results"       	# where input and output will be
                             # created once the script runs.
 
 PW_LAUNCH='pw.x'            # This is QE executable file.
+
+# check whether ECHO has the -e option
+if test "`echo -e`" = "-e" ; then ECHO=echo ; else ECHO="echo -e" ; fi
 
 # Security checks:
 if [ ! -d $TMP_DIR ]; then
