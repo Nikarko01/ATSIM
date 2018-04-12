@@ -2,9 +2,9 @@
 #SBATCH --nodes 1
 #SBATCH --ntasks 8
 #SBATCH --cpus-per-task 1
-#SBATCH --time=00:30:00
+#SBATCH --time=02:00:00
 #SBATCH --mem=14000
-#SBATCH --account=mse-468
+# # # SBATCH --account=mse-468
 # # # SBATCH --reservation=mse-468-04-10
 
 # run from directory where this script is
