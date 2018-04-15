@@ -23,15 +23,27 @@ PSEUDO_DIR="../pseudo"  	# where pseudopotentials are stored.
 OUT_DIR="./results"     	# where input and output will be
                         	# created once the script runs.
 
+#------------------------------------------------------------------------------
+# Checks
+#------------------------------------------------------------------------------
 
-# check whether ECHO has the -e option
+# check whether ECHO has the -e option --SECURITY_CHECK_1
 if test "`echo -e`" = "-e" ; then ECHO=echo ; else ECHO="echo -e" ; fi
 
+# Security checks: create a new $TMP_DIR --SECURITY_CHECK_2
+count=0
+testdir=$TMP_DIR
+while [ -d "$testdir" ]
+do
+   $ECHO "$testdir already exists"
+   let "count++"
+   testdir=$TMP_DIR
+   testdir+=$($ECHO "_"$count)
+done
+$ECHO "Found available name: $testdir"
+TMP_DIR=$testdir
 
-# Security checks:
-if [ ! -d $TMP_DIR ]; then
-   mkdir $TMP_DIR
-fi
+# Make dir $OUT_DIR --SECURITY_CHECK_3
 if [ ! -d $OUT_DIR ]; then
    mkdir $OUT_DIR
 fi
