@@ -12,7 +12,7 @@ module load fftw/3.3.6-pl2
 module load espresso/6.1.0-mpi
 
 
-LISTA="7.9200 7.9243 7.9286 7.9329 7.9371 7.9414 7.9457 7.9500 7.9543 7.9586 7.9629 7.9671 7.9714 7.9757 7.9800" # List of values of lattice parameter to try
+LISTA="7.5 7.6 7.7 7.8 7.825 7.85" # List of values of lattice parameter to try
 LISTECUT="70"          # List of plane-wave cutoffs to try
 LISTK="4"              # List of number of k-points per dimension to try.
 
@@ -50,7 +50,6 @@ fi
 
 
 # Output header
-$ECHO "Energy\tForce\tPressure\tEcutwf\tKmesh" >> data
 
 # Start loops on plane-wave cutoffs, k-point grids, and lattice constants:
 for ecut in $LISTECUT 
@@ -108,7 +107,7 @@ $PW_LAUNCH < $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.in > $OUT_DIR/MgO.scf.a=$a.ec
 E=$(grep ! $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $5}')
 F=$(grep "Total force =" $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $4}')
 P=$(grep "P=" $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $6 $7}' | cut -d '=' -f 2)
-$ECHO "$E\t$F\t$P\t$ecut\t$k" >> data
+$ECHO "$E\t$ecut\t$a" >> data
 
 # Finish loops on plane-wave cutoffs, k-point grids, and lattice constants:
 done
