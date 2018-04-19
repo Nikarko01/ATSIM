@@ -1,9 +1,9 @@
 Energy	Force	Pressure	Ecutwf	Kmesh
--120.73895646	0.000000		10	4
--139.42893918	0.000000		20	4
--147.59870762	0.000000		30	4
--150.74317964	0.000000		40	4
--151.79336804	0.000000		50	4
+-120.73895646	0.000000	NA	10	4
+-139.42893918	0.000000	NA	20	4
+-147.59870762	0.000000	NA	30	4
+-150.74317964	0.000000	-5478.84	40	4
+-151.79336804	0.000000	-1914.26	50	4
 -152.05252190	0.000000	-429.19	60	4
 -152.09671826	0.000000	-28.30	70	4
 -152.10113657	0.000000	36.12	80	4
@@ -15,19 +15,21 @@ Energy	Force	Pressure	Ecutwf	Kmesh
 -152.10133650	0.000000	39.56	140	4
 -152.10133933	0.000000	39.52	150	4
 -152.10137561	0.000000	39.54	200	4
-results/MgO.scf.a=7.97.ecut=100.k=4.out:262:          total   stress  (Ry/bohr**3)                   (kbar)     P=   39.43
-results/MgO.scf.a=7.97.ecut=10.k=4.out:257:          total   stress  (Ry/bohr**3)                   (kbar)     P=********
-results/MgO.scf.a=7.97.ecut=110.k=4.out:262:          total   stress  (Ry/bohr**3)                   (kbar)     P=   39.51
-results/MgO.scf.a=7.97.ecut=120.k=4.out:262:          total   stress  (Ry/bohr**3)                   (kbar)     P=   39.41
-results/MgO.scf.a=7.97.ecut=130.k=4.out:262:          total   stress  (Ry/bohr**3)                   (kbar)     P=   39.44
-results/MgO.scf.a=7.97.ecut=140.k=4.out:262:          total   stress  (Ry/bohr**3)                   (kbar)     P=   39.56
-results/MgO.scf.a=7.97.ecut=150.k=4.out:262:          total   stress  (Ry/bohr**3)                   (kbar)     P=   39.52
-results/MgO.scf.a=7.97.ecut=200.k=4.out:262:          total   stress  (Ry/bohr**3)                   (kbar)     P=   39.54
-results/MgO.scf.a=7.97.ecut=20.k=4.out:257:          total   stress  (Ry/bohr**3)                   (kbar)     P=********
-results/MgO.scf.a=7.97.ecut=30.k=4.out:254:          total   stress  (Ry/bohr**3)                   (kbar)     P=********
-results/MgO.scf.a=7.97.ecut=40.k=4.out:254:          total   stress  (Ry/bohr**3)                   (kbar)     P=-5478.84
-results/MgO.scf.a=7.97.ecut=50.k=4.out:254:          total   stress  (Ry/bohr**3)                   (kbar)     P=-1914.26
-results/MgO.scf.a=7.97.ecut=60.k=4.out:254:          total   stress  (Ry/bohr**3)                   (kbar)     P= -429.19
-results/MgO.scf.a=7.97.ecut=70.k=4.out:264:          total   stress  (Ry/bohr**3)                   (kbar)     P=  -28.30
-results/MgO.scf.a=7.97.ecut=80.k=4.out:264:          total   stress  (Ry/bohr**3)                   (kbar)     P=   36.12
-results/MgO.scf.a=7.97.ecut=90.k=4.out:262:          total   stress  (Ry/bohr**3)                   (kbar)     P=   39.43
+
+# results/MgO.scf.a=7.97.ecut=100.k=4.out:262:      (kbar)     P=   39.43
+# results/MgO.scf.a=7.97.ecut=10.k=4.out:257:      (kbar)     P=********
+# results/MgO.scf.a=7.97.ecut=110.k=4.out:262:      (kbar)     P=   39.51
+# results/MgO.scf.a=7.97.ecut=120.k=4.out:262:      (kbar)     P=   39.41
+# results/MgO.scf.a=7.97.ecut=130.k=4.out:262:      (kbar)     P=   39.44
+# results/MgO.scf.a=7.97.ecut=140.k=4.out:262:      (kbar)     P=   39.56
+# results/MgO.scf.a=7.97.ecut=150.k=4.out:262:      (kbar)     P=   39.52
+# results/MgO.scf.a=7.97.ecut=200.k=4.out:262:      (kbar)     P=   39.54
+# results/MgO.scf.a=7.97.ecut=20.k=4.out:257:      (kbar)     P=********
+# results/MgO.scf.a=7.97.ecut=30.k=4.out:254:      (kbar)     P=********
+# results/MgO.scf.a=7.97.ecut=40.k=4.out:254:      (kbar)     P=-5478.84
+# results/MgO.scf.a=7.97.ecut=50.k=4.out:254:      (kbar)     P=-1914.26
+# results/MgO.scf.a=7.97.ecut=60.k=4.out:254:      (kbar)     P= -429.19
+# results/MgO.scf.a=7.97.ecut=70.k=4.out:264:      (kbar)     P=  -28.30
+# results/MgO.scf.a=7.97.ecut=80.k=4.out:264:      (kbar)     P=   36.12
+# results/MgO.scf.a=7.97.ecut=90.k=4.out:262:      (kbar)     P=   39.43
+
