@@ -1,0 +1,23 @@
+---
+title: 'Lab 1: Assignment Empirical energy methods'
+author: "Nicola Barchi"
+date: "`r Sys.Date()`"
+output: bookdown::pdf_document2
+---
+
+```{r, include=FALSE}
+# Upload libraries
+library(rmarkdown)
+library(markdown)
+library(bookdown)
+library(htmlTable)
+library(kfigr)
+```
+
+```{r child = 'part1.Rmd'}
+```
+
+```{r child = 'part2.Rmd'}
+```
+
+** Final Notes: ** this report has been rendered using Rmarkdown, see this [manual](https://bookdown.org/yihui/bookdown/)
