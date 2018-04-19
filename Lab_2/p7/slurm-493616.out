@@ -1,0 +1,18 @@
+/scratch/nsbarchi/tmp already exists
+/scratch/nsbarchi/tmp_1 already exists
+/scratch/nsbarchi/tmp_2 already exists
+/scratch/nsbarchi/tmp_3 already exists
+/scratch/nsbarchi/tmp_4 already exists
+Found available name: /scratch/nsbarchi/tmp_5
+ running the scf calculation for... MgO.scf.a=5.5.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=6.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=6.5.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=6.6.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=6.7.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=6.8.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=6.9.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=7.0.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=7.1.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=7.2.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=7.3.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=7.4.ecut=70.k=4.in
