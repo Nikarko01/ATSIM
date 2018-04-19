@@ -12,7 +12,7 @@ module load fftw/3.3.6-pl2
 module load espresso/6.1.0-mpi
 
 
-LISTA="7.887 7.896 7.904 7.913 7.921 7.929 7.938 7.946 7.955 7.963 7.971 7.980 7.988 7.996 8.005 8.013 8.022 8.030 8.038 8.047" # List of values of lattice parameter to try
+LISTA="8.055 8.063 8.071 8.079 8.087 8.095 8.103 8.111 8.119 8.127 8.135 8.143 8.151 8.159 8.167" # List of values of lattice parameter to try
 LISTECUT="70"          # List of plane-wave cutoffs to try
 LISTK="4"              # List of number of k-points per dimension to try.
 
