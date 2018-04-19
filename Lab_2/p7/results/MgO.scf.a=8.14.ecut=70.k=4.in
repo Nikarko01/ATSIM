@@ -1,0 +1,32 @@
+      &control
+         calculation = 'scf'
+         restart_mode = 'from_scratch'
+         prefix = 'diamond.8.14.70.4'
+         tstress = .true.
+         tprnfor = .true.
+         pseudo_dir = '../pseudo'
+         outdir='/scratch/nsbarchi/tmp_1'
+      /
+      &system
+         ibrav = 8
+         celldm(1) = 8.14
+         celldm(2) = 1
+         celldm(3) = 1
+         nat = 2
+         ntyp = 2
+         ecutwfc = 70
+      /
+      &electrons
+         diagonalization = 'david'
+         mixing_mode = 'plain'
+         mixing_beta = 0.7
+         conv_thr = 1.0d-8
+      /
+      ATOMIC_SPECIES
+         Mg  24.305   Mg.pbe.UPF
+         O   15.9994  O.pbe.UPF
+      ATOMIC_POSITIONS {alat} 
+         Mg 0.00 0.00 0.00
+         O  0.50 0.50 0.50    
+      K_POINTS {automatic}
+         4 4 4  0 0 0
