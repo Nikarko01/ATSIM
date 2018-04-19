@@ -13,7 +13,7 @@ module load espresso/6.1.0-mpi
 
 
 LISTA="7.97"             	# List of values of lattice parameter to try
-LISTECUT="xxx"              # List of plane-wave cutoffs to try
+LISTECUT="50"	                # List of plane-wave cutoffs to try
 LISTK="1 2 3 4 5 6 7 8"  	# List of number of k-points per dimension to try.
 
 
