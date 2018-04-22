@@ -2,7 +2,7 @@
 
 
 # Parameter
-dir=./p5
+dir=./p7
 # check whether ECHO has the -e option
 if test "`echo -e`" = "-e" ; then ECHO=echo ; else ECHO="echo -e" ; fi
 

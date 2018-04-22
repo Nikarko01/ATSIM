@@ -11,7 +11,8 @@ module load intel-mkl/2017.2.174
 module load fftw/3.3.6-pl2
 module load espresso/6.1.0-mpi
 
-LISTX="0.0 0.000714 0.001429 0.002143 0.002857 0.003571 0.004286 0.005 0.005714 0.006429 0.007143 0.007857 0.008571 0.009286 0.01" # List of values of lattice parameter to try
+
+LISTX="" # List of values of lattice parameter to try
 LISTECUT="70"          # List of plane-wave cutoffs to try
 LISTK="4"               # List of number of k-points per dimension to try.
 
@@ -19,7 +20,7 @@ LISTK="4"               # List of number of k-points per dimension to try.
 # Files of interest:
 TMP_DIR="/scratch/nsbarchi/tmp"         # where temporary data will be stored.
 PSEUDO_DIR="../pseudo"  # where pseudopotentials are stored.
-OUT_DIR="./results.8A.ibrav8"     # where input and output will be
+OUT_DIR="./results.8B.ibrav0"     # where input and output will be
                         # created once the script runs.
 
 #------------------------------------------------------------------------------
@@ -63,12 +64,13 @@ do
 
 PW_LAUNCH="srun pw.x"
 alat=8.04475
-a=$(echo "$alat*(1+$x)" | bc -l)
-b=$(echo " 1-$x" | bc -l)
-c=$(echo " 1+$x^2/(1-$x^2)" | bc -l)
+x=$(echo " 1+$x" | bc -l)
+a=$(echo "$alat*$x/2" | bc -l)
+
+
 
 # Create new input file:
-cat > $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.in << EOF
+cat > $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.in << EOF
       &CONTROL
          calculation = 'relax'
          restart_mode = 'from_scratch'
@@ -80,59 +82,38 @@ cat > $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.in << EOF
          etot_conv_thr = 1.0D-5 ! 1 convergence criteria  
          forc_conv_thr = 1.0D-4 ! 2nd conv. criteria
       /
-
       &SYSTEM
-         ibrav = 8
+         ibrav = 0
          celldm(1) = $a
-         celldm(2) = $b
-         celldm(3) = $c
-         nat = 8
+         nat = 2
          ntyp = 2
          ecutwfc = $ecut
       /
-
       &ELECTRONS
          diagonalization = 'david'
          mixing_mode = 'plain'
          mixing_beta = 0.7
          conv_thr = 1.0d-8
       /
-
-      &IONS
-      ion_dynamics = 'bfgs'
-      /
-
-      &CELL
-      cell_dynamics = 'bfgs'
-      press = 0.0d0
-      press_conv_thr = 0.01D0
-      /
-
       ATOMIC_SPECIES
          Mg  24.305   Mg.pbe.UPF
          O   15.9994  O.pbe.UPF
       ATOMIC_POSITIONS {alat} 
          Mg 0.00 0.00 0.00
-         Mg 0.00 0.50 0.50
-         Mg 0.50 0.00 0.50
-         Mg 0.50 0.50 0.00
-         O  0.50 0.00 0.00
-         O  0.00 0.50 0.00
-         O  0.00 0.00 0.50
          O  0.50 0.50 0.50
       K_POINTS {automatic}
          $k $k $k  0 0 0
 EOF
 
 # Run PWscf to create new output file:
-$ECHO " running the scf calculation for..." MgO.scf.a=$x.ecut=$ecut.k=$k.in
-$PW_LAUNCH < $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.in > $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.out
+$ECHO " running the scf calculation for..." MgO.scf.a=$a.ecut=$ecut.k=$k.in
+$PW_LAUNCH < $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.in > $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out
 
 # Extract data
-E=$(grep ! $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.out | awk '{print $5}')
-F=$(grep "Total force =" $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.out | awk '{print $4}')
-P=$(grep "P=" $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.out | awk '{print $6 $7}' | cut -d '=' -f 2)
-$ECHO "$E\t$F\t$P\t$ecut\t$k\t$x" >> data
+E=$(grep ! $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $5}')
+F=$(grep "Total force =" $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $4}')
+P=$(grep "P=" $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $6 $7}' | cut -d '=' -f 2)
+$ECHO "$E\t$F\t$P\t$ecut\t$k" >> data
 
 # Finish loops on plane-wave cutoffs, k-point grids, and lattice constants:
 done
