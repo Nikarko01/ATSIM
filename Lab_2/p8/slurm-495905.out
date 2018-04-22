@@ -1,0 +1,24 @@
+/scratch/nsbarchi/tmp already exists
+Found available name: /scratch/nsbarchi/tmp_1
+ running the scf calculation for... MgO.scf.a=0.0.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=0.000714.ecut=70.k=4.in
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+In: PMI_Abort(1, application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0)
+slurmstepd: error: *** STEP 495905.1 ON f187 CANCELLED AT 2018-04-22T14:54:38 ***
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: error: f187: task 0: Exited with exit code 1
+srun: Terminating job step 495905.1
+srun: error: f187: tasks 1-7: Killed
+ running the scf calculation for... MgO.scf.a=0.001429.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=0.002143.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=0.002857.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=0.003571.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=0.004286.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=0.005.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=0.005714.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=0.006429.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=0.007143.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=0.007857.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=0.008571.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=0.009286.ecut=70.k=4.in
+ running the scf calculation for... MgO.scf.a=0.01.ecut=70.k=4.in
