@@ -50,7 +50,6 @@ fi
 
 
 # Output header
-$ECHO "Energy\tForce\tPressure\tEcutwf\tKmesh" >> data
 
 # Start loops on plane-wave cutoffs, k-point grids, and lattice constants:
 for ecut in $LISTECUT 
@@ -66,7 +65,7 @@ PW_LAUNCH="srun pw.x"
 alat=8.04475
 
 c=$(echo "1+($x^2)/(4-$x^2)" | bc -l)
-gamma=$(echo "1-$x" | bc -l)
+gamma=$(echo "$x" | bc -l)
 
 # Create new input file:
 cat > $OUT_DIR/MgO.scf.x=$x.ecut=$ecut.k=$k.in << EOF
