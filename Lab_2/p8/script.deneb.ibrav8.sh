@@ -50,7 +50,7 @@ fi
 
 
 # Output header
-$ECHO "Energy\tForce\tPressure\tEcutwf\tKmesh" >> data
+$ECHO "Energy\t Ecutwf \t Deform" >> $OUT_DIR/data
 
 # Start loops on plane-wave cutoffs, k-point grids, and lattice constants:
 for ecut in $LISTECUT 

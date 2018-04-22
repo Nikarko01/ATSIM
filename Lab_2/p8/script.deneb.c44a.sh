@@ -12,7 +12,7 @@ module load fftw/3.3.6-pl2
 module load espresso/6.1.0-mpi
 
 
-LISTX="-0.000714 -0.002143 -0.003571 -0.005 -0.006429 -0.007857 -0.009286 -0.01 0.0 0.000714 0.002143 0.003571 0.005 0.006429 0.007857 0.009286" # List of values of lattice parameter to try
+LISTX="-0.000714 -0.002143 -0.003571 -0.005 -0.006429 -0.007857 -0.009286 -0.01" # List of values of lattice parameter to try
 LISTECUT="70"          # List of plane-wave cutoffs to try
 LISTK="4"               # List of number of k-points per dimension to try.
 
@@ -50,6 +50,7 @@ fi
 
 
 # Output header
+$ECHO "Energy\t Ecutwf \t Deform" >> $OUT_DIR/data
 
 # Start loops on plane-wave cutoffs, k-point grids, and lattice constants:
 for ecut in $LISTECUT 
@@ -64,7 +65,7 @@ do
 PW_LAUNCH="srun pw.x"
 alat=8.04475
 
-c=$(echo "1+($x^2)/(4-$x^2)" | bc -l)
+c=$(echo "1+($x^2)/(4-($x)^2)" | bc -l)
 gamma=$(echo "$x" | bc -l)
 
 # Create new input file:
