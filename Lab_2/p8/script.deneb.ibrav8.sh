@@ -66,7 +66,7 @@ PW_LAUNCH="srun pw.x"
 alat=8.04475
 a=$(echo "$alat*(1+$x)" | bc -l)
 b=$(echo " 1-$x" | bc -l)
-c=$(echo " 1+x^2/(1-x^2)" | bc -l)
+c=$(echo " 1+$x^2/(1-$x^2)" | bc -l)
 
 # Create new input file:
 cat > $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.in << EOF
