@@ -81,6 +81,7 @@ cat > $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.in << EOF
          etot_conv_thr = 1.0D-5 ! 1 convergence criteria  
          forc_conv_thr = 1.0D-4 ! 2nd conv. criteria
       /
+
       &SYSTEM
          ibrav = 8
          celldm(1) = $a
@@ -90,12 +91,24 @@ cat > $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.in << EOF
          ntyp = 2
          ecutwfc = $ecut
       /
+
       &ELECTRONS
          diagonalization = 'david'
          mixing_mode = 'plain'
          mixing_beta = 0.7
          conv_thr = 1.0d-8
       /
+
+      &IONS
+      ion_dynamics = 'bfgs'
+      /
+
+      &CELL
+      cell_dynamics = 'bfgs'
+      press = 0.0d0
+      press_conv_thr = 0.01D0
+      /
+
       ATOMIC_SPECIES
          Mg  24.305   Mg.pbe.UPF
          O   15.9994  O.pbe.UPF
