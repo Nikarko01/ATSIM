@@ -12,7 +12,7 @@ module load fftw/3.3.6-pl2
 module load espresso/6.1.0-mpi
 
 
-LISTX="" # List of values of lattice parameter to try
+LISTX="0.0 0.000714 0.001429 0.002143 0.002857 0.003571 0.004286 0.005 0.005714 0.006429 0.007143 0.007857 0.008571 0.009286 0.01" # List of values of lattice parameter to try
 LISTECUT="70"          # List of plane-wave cutoffs to try
 LISTK="4"               # List of number of k-points per dimension to try.
 
@@ -50,7 +50,7 @@ fi
 
 
 # Output header
-$ECHO "Energy\tForce\tPressure\tEcutwf\tKmesh" >> data
+$ECHO "Energy\t Ecutwf \t Epsilon" >> $OUT_DIR/data
 
 # Start loops on plane-wave cutoffs, k-point grids, and lattice constants:
 for ecut in $LISTECUT 
@@ -64,10 +64,9 @@ do
 
 PW_LAUNCH="srun pw.x"
 alat=8.04475
-x=$(echo " 1+$x" | bc -l)
-a=$(echo "$alat*$x/2" | bc -l)
-
-
+a=$(echo "1+$x"            | bc -l)
+b=$(echo "1-$x"            | bc -l)
+c=$(echo "1+$x^2/(1-$x^2)" | bc -l)
 
 # Create new input file:
 cat > $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.in << EOF
@@ -82,24 +81,49 @@ cat > $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.in << EOF
          etot_conv_thr = 1.0D-5 ! 1 convergence criteria  
          forc_conv_thr = 1.0D-4 ! 2nd conv. criteria
       /
+
       &SYSTEM
          ibrav = 0
-         celldm(1) = $a
-         nat = 2
+         celldm(1) = $alat
+
+
+         nat = 8
          ntyp = 2
          ecutwfc = $ecut
       /
+
       &ELECTRONS
          diagonalization = 'david'
          mixing_mode = 'plain'
          mixing_beta = 0.7
          conv_thr = 1.0d-8
       /
+      
+      &IONS
+      ion_dynamics = 'bfgs'
+      /
+
+      &CELL
+      cell_dynamics = 'bfgs'
+      press = 0.0d0
+      press_conv_thr = 0.01D0
+      /
+
       ATOMIC_SPECIES
          Mg  24.305   Mg.pbe.UPF
          O   15.9994  O.pbe.UPF
+      CELL_PARAMETERS (alat= 8.04475)
+             $a        0.000000000   0.000000000
+         0.000000000       $b        0.000000000
+         0.000000000   0.000000000       $c     
       ATOMIC_POSITIONS {alat} 
          Mg 0.00 0.00 0.00
+         Mg 0.00 0.50 0.50
+         Mg 0.50 0.00 0.50
+         Mg 0.50 0.50 0.00
+         O  0.50 0.00 0.00
+         O  0.00 0.50 0.00
+         O  0.00 0.00 0.50
          O  0.50 0.50 0.50
       K_POINTS {automatic}
          $k $k $k  0 0 0
@@ -110,10 +134,8 @@ $ECHO " running the scf calculation for..." MgO.scf.a=$a.ecut=$ecut.k=$k.in
 $PW_LAUNCH < $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.in > $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out
 
 # Extract data
-E=$(grep ! $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $5}')
-F=$(grep "Total force =" $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $4}')
-P=$(grep "P=" $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $6 $7}' | cut -d '=' -f 2)
-$ECHO "$E\t$F\t$P\t$ecut\t$k" >> data
+E=$(grep "Final energy" $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $5}')
+$ECHO "$E\t$ecut\t$x" >> $OUT_DIR/data
 
 # Finish loops on plane-wave cutoffs, k-point grids, and lattice constants:
 done
