@@ -50,7 +50,7 @@ fi
 
 
 # Output header
-$ECHO "Energy\t Ecutwf \t Epsilon" >> $OUT_DIR/data
+$ECHO "Energy\t Ecutwf \t Deform" >> $OUT_DIR/data
 
 # Start loops on plane-wave cutoffs, k-point grids, and lattice constants:
 for ecut in $LISTECUT 
