@@ -12,7 +12,7 @@ module load fftw/3.3.6-pl2
 module load espresso/6.1.0-mpi
 
 
-LISTX="0.0 0.000714 0.001429 0.002143 0.002857 0.003571 0.004286 0.005 0.005714 0.006429 0.007143 0.007857 0.008571 0.009286 0.01" # List of values of lattice parameter to try
+LISTX="-0.000714 -0.002143 -0.003571 -0.005 -0.006429 -0.007857 -0.009286 -0.01 0.0 0.000714 0.002143 0.003571 0.005 0.006429 0.007857 0.009286" # List of values of lattice parameter to try
 LISTECUT="70"          # List of plane-wave cutoffs to try
 LISTK="4"               # List of number of k-points per dimension to try.
 
@@ -20,7 +20,7 @@ LISTK="4"               # List of number of k-points per dimension to try.
 # Files of interest:
 TMP_DIR="/scratch/nsbarchi/tmp"         # where temporary data will be stored.
 PSEUDO_DIR="../pseudo"  # where pseudopotentials are stored.
-OUT_DIR="./results.8A.ibrav8"     # where input and output will be
+OUT_DIR="./results.8A.c44"     # where input and output will be
                         # created once the script runs.
 
 #------------------------------------------------------------------------------
@@ -64,12 +64,12 @@ do
 
 PW_LAUNCH="srun pw.x"
 alat=8.04475
-a=$(echo "$alat*(1+$x)" | bc -l)
-b=$(echo " 1-$x" | bc -l)
-c=$(echo " 1+$x^2/(1-$x^2)" | bc -l)
+
+c=$(echo "1+($x^2)/(4-$x^2)" | bc -l)
+gamma=$(echo "1-$x" | bc -l)
 
 # Create new input file:
-cat > $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.in << EOF
+cat > $OUT_DIR/MgO.scf.x=$x.ecut=$ecut.k=$k.in << EOF
       &CONTROL
          calculation = 'relax'
          restart_mode = 'from_scratch'
@@ -83,11 +83,11 @@ cat > $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.in << EOF
       /
 
       &SYSTEM
-         ibrav = 8
-         celldm(1) = $a
-         celldm(2) = $b
+         ibrav = 12
+         celldm(1) = $alat
+         celldm(2) = 1
          celldm(3) = $c
-
+         celldm(4) = $gamma
          nat = 8
          ntyp = 2
          ecutwfc = $ecut
@@ -127,11 +127,11 @@ cat > $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.in << EOF
 EOF
 
 # Run PWscf to create new output file:
-$ECHO " running the scf calculation for..." MgO.scf.a=$x.ecut=$ecut.k=$k.in
-$PW_LAUNCH < $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.in > $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.out
+$ECHO " running the scf calculation for..." MgO.scf.x=$x.ecut=$ecut.k=$k.in
+$PW_LAUNCH < $OUT_DIR/MgO.scf.x=$x.ecut=$ecut.k=$k.in > $OUT_DIR/MgO.scf.x=$x.ecut=$ecut.k=$k.out
 
 # Extract data
-E=$(grep "Final energy" $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.out | awk '{print $4}')
+E=$(grep "Final energy" $OUT_DIR/MgO.scf.x=$x.ecut=$ecut.k=$k.out | awk '{print $4}')
 $ECHO "$E\t$ecut\t$x" >> $OUT_DIR/data
 
 # Finish loops on plane-wave cutoffs, k-point grids, and lattice constants:

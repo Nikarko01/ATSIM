@@ -87,6 +87,7 @@ cat > $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.in << EOF
          celldm(1) = $alat
 
 
+
          nat = 8
          ntyp = 2
          ecutwfc = $ecut
@@ -100,13 +101,13 @@ cat > $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.in << EOF
       /
       
       &IONS
-      ion_dynamics = 'bfgs'
+         ion_dynamics = 'bfgs'
       /
 
       &CELL
-      cell_dynamics = 'bfgs'
-      press = 0.0d0
-      press_conv_thr = 0.01D0
+         cell_dynamics = 'bfgs'
+         press = 0.0d0
+         press_conv_thr = 0.01D0
       /
 
       ATOMIC_SPECIES
@@ -134,7 +135,7 @@ $ECHO " running the scf calculation for..." MgO.scf.a=$a.ecut=$ecut.k=$k.in
 $PW_LAUNCH < $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.in > $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out
 
 # Extract data
-E=$(grep "Final energy" $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $5}')
+E=$(grep "Final energy" $OUT_DIR/MgO.scf.a=$a.ecut=$ecut.k=$k.out | awk '{print $4}')
 $ECHO "$E\t$ecut\t$x" >> $OUT_DIR/data
 
 # Finish loops on plane-wave cutoffs, k-point grids, and lattice constants:
