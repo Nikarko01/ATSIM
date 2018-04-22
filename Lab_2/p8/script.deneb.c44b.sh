@@ -20,7 +20,7 @@ LISTK="4"               # List of number of k-points per dimension to try.
 # Files of interest:
 TMP_DIR="/scratch/nsbarchi/tmp"         # where temporary data will be stored.
 PSEUDO_DIR="../pseudo"  # where pseudopotentials are stored.
-OUT_DIR="./results.8B.c44"     # where input and output will be
+OUT_DIR="./results.8b.c44"     # where input and output will be
                         # created once the script runs.
 
 #------------------------------------------------------------------------------
