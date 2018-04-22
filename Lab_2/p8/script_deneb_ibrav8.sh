@@ -20,7 +20,7 @@ LISTK="4"               # List of number of k-points per dimension to try.
 # Files of interest:
 TMP_DIR="/scratch/nsbarchi/tmp"         # where temporary data will be stored.
 PSEUDO_DIR="../pseudo"  # where pseudopotentials are stored.
-OUT_DIR="./results"     # where input and output will be
+OUT_DIR="./results.8A.ibrav8"     # where input and output will be
                         # created once the script runs.
 
 #------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ cat > $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.in << EOF
          celldm(1) = $a
          celldm(2) = $b
          celldm(3) = $c
-         nat = 2
+         nat = 8
          ntyp = 2
          ecutwfc = $ecut
       /
@@ -101,6 +101,12 @@ cat > $OUT_DIR/MgO.scf.a=$x.ecut=$ecut.k=$k.in << EOF
          O   15.9994  O.pbe.UPF
       ATOMIC_POSITIONS {alat} 
          Mg 0.00 0.00 0.00
+         Mg 0.00 0.50 0.50
+         Mg 0.50 0.00 0.50
+         Mg 0.50 0.50 0.00
+         O  0.50 0.00 0.00
+         O  0.00 0.50 0.00
+         O  0.00 0.00 0.50
          O  0.50 0.50 0.50
       K_POINTS {automatic}
          $k $k $k  0 0 0
