@@ -1,0 +1,31 @@
+&control
+    calculation = 'scf'
+    restart_mode = 'from_scratch'
+    prefix = 'MgO'
+    tstress = .true.
+    tprnfor = .true.
+    pseudo_dir = '../PP/'
+    outdir = '../temp/'
+/
+&system
+    ibrav = 2
+    celldm(1) = 8.0374557182 
+    nat = 2
+    ntyp = 2
+    ecutwfc = 45.0
+    ecutrho = 360.0
+/
+&electrons
+    diagonalization = 'david'
+    mixing_mode = 'plain'
+    mixing_beta = 0.7
+    conv_thr = 1.0d-8
+/
+ATOMIC_SPECIES
+    Mg  24.305   Mg.pbe.uspp.UPF
+    O   15.9994  O.pbe.uspp.UPF
+ATOMIC_POSITIONS {alat} 
+    Mg 0.00 0.00 0.00
+    O  0.50 0.50 0.50
+K_POINTS {automatic}
+    4 4 4 0 0 0

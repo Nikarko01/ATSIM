@@ -1,0 +1,25 @@
+&control
+    calculation = 'nscf'
+    prefix = 'MgO'
+    pseudo_dir = '../PP/'
+    outdir = '../temp/'
+/
+&system
+    ibrav = 2
+    celldm(1) = 8.0374557182
+    nat = 2
+    ntyp = 2
+    ecutwfc = 45.0
+    ecutrho = 360.0
+    occupations='tetrahedra'
+/
+&electrons
+/
+ATOMIC_SPECIES
+    Mg  24.305   Mg.pbe.uspp.UPF
+    O   15.9994  O.pbe.uspp.UPF
+ATOMIC_POSITIONS {alat}
+    Mg 0.00 0.00 0.00
+    O  0.50 0.50 0.50
+K_POINTS {automatic}
+    8 8 8 0 0 0

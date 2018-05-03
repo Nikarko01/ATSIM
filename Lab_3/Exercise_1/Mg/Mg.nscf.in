@@ -1,0 +1,25 @@
+&control
+    calculation = 'nscf'
+    prefix = 'Mg'
+    pseudo_dir = '../PP/'
+    outdir = '../temp/'
+/
+&system
+    ibrav = 4
+    celldm(1) = <-- Fill this in
+    celldm(3) = <-- Fill this in
+    nat = 2
+    ntyp = 1
+    ecutwfc = 45.0
+    ecutrho = 360.0
+    occupations = 'tetrahedra'
+/
+&electrons
+/
+ATOMIC_SPECIES
+    Mg  24.305   Mg.pbe.uspp.UPF
+ATOMIC_POSITIONS {crystal}
+    Mg 0.333333 0.666667 0.25
+    Mg 0.666667 0.333333 0.75
+K_POINTS {automatic}
+    18 18 10 0 0 0

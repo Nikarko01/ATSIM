@@ -1,0 +1,34 @@
+&control
+    calculation = 'scf'
+    restart_mode = 'from_scratch'
+    prefix = 'Mg'
+    tstress = .true.
+    tprnfor = .true.
+    pseudo_dir = '../PP/'
+    outdir = '../temp/'
+/
+&system
+    ibrav = 4
+    celldm(1) = <-- Fill this in
+    celldm(3) = <-- Fill this in 
+    nat = 2
+    ntyp = 1
+    ecutwfc = 45.0
+    ecutrho = 360.0
+    occupations = 'smearing'
+    smearing = 'mv'
+    degauss = 0.01
+/
+&electrons
+    diagonalization = 'david'
+    mixing_mode = 'plain'
+    mixing_beta = 0.7
+    conv_thr = 1.0d-8
+/
+ATOMIC_SPECIES
+    Mg  24.305   Mg.pbe.uspp.UPF
+ATOMIC_POSITIONS {crystal} 
+    Mg 0.333333 0.666667 0.25
+    Mg 0.666667 0.333333 0.75
+K_POINTS {automatic}
+    12 12 6 0 0 0

@@ -1,0 +1,26 @@
+&control
+    calculation = 'bands'
+    prefix = 'MgO'
+    pseudo_dir = '../PP/'
+    outdir = '../temp/'
+/
+&system
+    ibrav = 2
+    celldm(1) = 8.0374557182
+    nat = 2
+    ntyp = 2
+    ecutwfc = 45.0
+    ecutrho = 360.0
+    nbnd = 16
+/
+&electrons
+/
+ATOMIC_SPECIES
+    Mg  24.305   Mg.pbe.uspp.UPF
+    O   15.9994  O.pbe.uspp.UPF
+ATOMIC_POSITIONS {alat}
+    Mg 0.00 0.00 0.00
+    O  0.50 0.50 0.50
+K_POINTS {crystal_b}
+ 1       <-- Modify this
+ 0 0 0 1 <-- Modify this

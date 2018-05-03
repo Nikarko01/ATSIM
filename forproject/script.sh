@@ -76,4 +76,4 @@ K_POINTS {automatic}
  3 3 3 0 0 0
 EOF
 srun pw.x -npool 4 -in BiFeO3.vc-relax.in > BiFeO3.vc-relax.out
-! search for npool must be equal to ncluster
+# search for npool must be equal to ncluster

@@ -1,0 +1,5 @@
+ &bands
+    prefix  = 'Mg'
+    outdir = '../temp'
+    filband = 'Mg.bands'
+ /
