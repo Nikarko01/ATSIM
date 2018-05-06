@@ -4,7 +4,7 @@
 # Initial parameters
 # ---------------
 
-PWROOT="mpirun -np 1 YOUR_PATH_TO_pw.x"
+PWROOT="mpirun -np 1 ~/Codes/espresso-5.1-hubbard-master_28.02.2018"
 PSEUDODIR="../PP"
 OUTODIR="../tmp"
 
