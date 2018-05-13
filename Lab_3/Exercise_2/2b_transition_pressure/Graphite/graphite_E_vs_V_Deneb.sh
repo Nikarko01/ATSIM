@@ -4,9 +4,9 @@
 #SBATCH --cpus-per-task 1
 #SBATCH --time=00:30:00
 #SBATCH --mem=14000
-#SBATCH --partition=mse-468
+# SBATCH --partition=mse-468
 #SBATCH --account=mse-468
-#SBATCH --reservation=mse-468
+# SBATCH --reservation=mse-468
 
 #These are the libraries necessary for our code to run
 module purge
@@ -26,10 +26,10 @@ PSEUDO='C.revpbe-rrkjus.adc.UPF'
 # Input data
 #
 # List of values for volumes (The cell contains 2 atoms!)
-LISTVOL="" # TO COMPLETE
+LISTVOL="12.82 12.79 12.76 12.73 12.71 12.68 12.65 12.62 12.59 12.56" # TO COMPLETE
 
 # List of values for the c/a ratio 
-LISTC_O_A="" # TO COMPLETE
+LISTC_O_A="3.094 3.088 3.081 3.074 3.067 3.060 3.054 3.047 3.040 3.033" # TO COMPLETE
 
 # Prefix name
 PREFIX="graphite"
