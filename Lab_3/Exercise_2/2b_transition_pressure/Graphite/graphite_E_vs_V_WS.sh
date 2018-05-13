@@ -19,7 +19,7 @@ PSEUDO='C.revpbe-rrkjus.adc.UPF'
 # Input data
 #
 # List of values for volumes (The cell contains 2 atoms!)
-LISTVOL="12.82 12.79 12.76 12.73 12.71 12.68 12.65 12.62 12.59 12.56" # TO COMPLETE
+LISTVOL="293.3 292.6 292.0 291.4 290.7 290.1 289.4 288.8 288.1 287.5" # TO COMPLETE
 
 # List of values for the c/a ratio 
 LISTC_O_A="3.094 3.088 3.081 3.074 3.067 3.060 3.054 3.047 3.040 3.033" # TO COMPLETE
@@ -79,7 +79,7 @@ $PW_LAUNCH < $INFILE > $OUTFILE
 
 EN=`cat $OUTFILE | grep -e ! | egrep -o "([+-])?[0-9]+(\.[0-9]+)?"`
 
-echo "$A $CoA $vol $EN" >> $PREFIX"_acoa.dat"
+echo "$A $CoA $vol $EN" >> $PREFIX"_E_vs_V_acoa.dat"
 
 echo "Energy $EN, Vol =$vol"
 done
