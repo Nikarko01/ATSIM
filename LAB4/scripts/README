@@ -1,0 +1,29 @@
+This folder contains a set of utilities that will help you in the exercises of Molecular Dynamics.
+The Gulp program will generate a file "itsname.trg" that contains the configurations generated at different times by the MD simulation. There is a lot of information that can be extracted out of it, so to speed up your work, you'll find in this directory a set of scripts.
+
+First use parser.py to parse the .trg file in a way more convenient to python.
+To execute a script written in python, type the following on the command line.
+> python parser.py itsname.trg itsname.gout values.json
+It will produce a "values.json" file (its name being the last input to command line).
+Moreover, it will produce a file called E_of_t.dat, that contains the values of time, temperature and energies as a function of time.
+
+Then you can use the other scripts to compute physical quantities
+
+msd.py is used to compute the MSD of a run
+> python msd.py values.json
+Receives in input the name of the json file produced by the parser.py script.
+Produces a msd.dat file with the values of t, MSD(t) and d/dt MSD(t).
+
+rdf.py computes the radial distribution function (rdf). Execute it as
+> python rdf.py values.json
+The scripts computes the rdf dividing the radial distance in bins. 
+
+vaf.py computes the velocity autocorrelation function (vaf). 
+> python vaf.py values.json
+Returns a file vaf.dat with vaf as a function of t
+
+
+Keep in mind that options can be viewed with:
+> python myscript.py -h
+or
+> python myscript.py --help
