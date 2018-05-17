@@ -15,7 +15,7 @@
 ##### list_time_steps=`seq 0.001 0.001 0.01`
 ### This creates a sequence of values between 0.001 and 0.01, every 0.001
 
-list_time_steps='0.017 0.018 0.02'
+list_time_steps='0.013 0.014 0.015 0.016'
 list_temperatures='3000'
 list_supercell_size='2'
 

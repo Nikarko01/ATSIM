@@ -8,3 +8,7 @@ Cell size 2 Temperature 3000, Equilibration time 5.0, Timestep 0.006 ps, Product
 Cell size 2 Temperature 3000, Equilibration time 5.0, Timestep 0.007 ps, Production 10 ps, Sampling 0.02
 Cell size 2 Temperature 3000, Equilibration time 5.0, Timestep 0.008 ps, Production 10 ps, Sampling 0.02
 Cell size 2 Temperature 3000, Equilibration time 5.0, Timestep 0.009 ps, Production 10 ps, Sampling 0.02
+Cell size 2 Temperature 3000, Equilibration time 5.0, Timestep 0.013 ps, Production 10 ps, Sampling 0.02
+Cell size 2 Temperature 3000, Equilibration time 5.0, Timestep 0.014 ps, Production 10 ps, Sampling 0.02
+Cell size 2 Temperature 3000, Equilibration time 5.0, Timestep 0.015 ps, Production 10 ps, Sampling 0.02
+Cell size 2 Temperature 3000, Equilibration time 5.0, Timestep 0.016 ps, Production 10 ps, Sampling 0.02
