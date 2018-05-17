@@ -1,0 +1,52 @@
+conv md
+title
+molecular dynamics of silver
+end
+cell
+    4.085    4.085     4.085    90 90 90
+fractional    4
+Ag     0.000000000     0.000000000     0.000000000
+Ag     0.000000000     0.500000000     0.500000000
+Ag     0.500000000     0.000000000     0.500000000
+Ag     0.500000000     0.500000000     0.000000000
+#
+#  modified version of the Cleri-Rosato potential for GULP (Ag)
+#  from F. Cleri and V. Rosato
+#  Phys. Rev. B, 48, 22 (1993)
+#
+#  This potential uses the Embedded Atom Model
+#
+species
+Ag core  0.000
+manybody
+Ag core Ag core  0.0 8.0
+#
+#  Functional
+#
+eam_functional square_root
+Ag core  1.000
+#
+#  Density term
+#
+eam_density exponential 0
+Ag core  1.387684 2.173423 2.888531
+#
+#  Repulsive two-body components -
+#  second power is a dummy argument
+#
+buckingham
+Ag core Ag core    11454.950282 0.264324 0.0 0.0 12.0
+#
+# MD specific parameters
+#
+supercell 2 2 2
+ensemble nve
+temperature 3000
+integrator leapfrog verlet
+equilbration 5.0 ps
+production   10 ps
+timestep     1 ps
+sample       0.02 ps
+write        0.02 ps
+output trajectory ascii Trajectories_2_3000_1.trg
+dump every 100 Recovery_2_3000_1.res
