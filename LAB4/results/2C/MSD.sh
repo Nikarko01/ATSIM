@@ -10,7 +10,7 @@ do
 jout=$(basename $json) # exctracting file name
 jout=${jout%.json} # remove extension
 echo "Computing Radial Distribution Function (RDF) for "$json"..."
-python $SCRIPTPATH $json -o $jout.dat --stepsize-t 10 -e 50 > slurm.out &
+python $SCRIPTPATH $json -o $jout.dat --stepsize-t 10 -e 55 > slurm.out &
 echo $jout".dat written"
 done
 
